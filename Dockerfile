@@ -6,6 +6,9 @@ RUN apt-get update && apt-get install -y \
     libxrender1 \
     libxext6 \
     libglib2.0-0 \
+    libexpat1 \
+    libfontconfig1 \
+    libfreetype6 \
     build-essential \
     && rm -rf /var/lib/apt/lists/*
 
