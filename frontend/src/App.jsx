@@ -18,6 +18,8 @@ export default function App() {
   const [modelInfo, setModelInfo] = useState(null);
   const [latestResult, setLatestResult] = useState(null);
   
+  const API_BASE = import.meta.env.VITE_API_URL || '';
+
   // Search state
   const [isSearchOpen, setIsSearchOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState('');
@@ -29,7 +31,7 @@ export default function App() {
   const [unreadNotifications, setUnreadNotifications] = useState(true);
 
   useEffect(() => { 
-    fetch('/api/model-info')
+    fetch(API_BASE + '/api/model-info')
       .then(r => r.json())
       .then(setModelInfo)
       .catch(() => {}); 
@@ -41,7 +43,7 @@ export default function App() {
     setSearchLoading(true);
     setSearchError('');
     try {
-      const r = await fetch('/api/predict', {
+      const r = await fetch(API_BASE + '/api/predict', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ smiles: searchQuery.trim() })

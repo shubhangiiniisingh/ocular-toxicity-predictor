@@ -3,6 +3,7 @@ import { Upload, Download, Search, FileSpreadsheet, CheckCircle2, ShieldAlert, A
 import { DisclaimerAlert } from './SinglePredictor';
 
 export default function BatchPredictor() {
+  const API_BASE = import.meta.env.VITE_API_URL || '';
   const [selectedFile, setSelectedFile] = useState(null);
   const [loading, setLoading] = useState(false);
   const [results, setResults] = useState(null);
@@ -31,7 +32,7 @@ export default function BatchPredictor() {
     formData.append('file', selectedFile);
 
     try {
-      const response = await fetch('/api/predict/batch', {
+      const response = await fetch(API_BASE + '/api/predict/batch', {
         method: 'POST',
         body: formData,
       });
